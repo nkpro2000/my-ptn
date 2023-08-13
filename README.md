@@ -1,5 +1,17 @@
 # my Partition Table plan *for my devices*
 
+**To Setup :**
+```bash
+sudo mkdir -m u=rwx,g=,o= -p /ptn/.$USER
+sudo chown $USER:$USER /ptn/.$USER
+
+git clone https://github.com/nkpro2000/my-ptn.git /ptn/.$USER/PtnTable_git
+
+python /ptn/.$USER/PtnTable_git/setup-ptn.py
+
+sudo -K
+```
+
 
 ## Primary Partitions
 ```
