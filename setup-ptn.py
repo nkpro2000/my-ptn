@@ -33,8 +33,11 @@ TREE = (
     (11, 'LinEx', 'drb'),
 )
 ops = []
+rops = []
 for i in 'bdrs':
     ops.append(f'mkdir -p {PTN}{i}')
+    rops.append(f'rm {PTN}{i}/*')
+    rops.append(f'rmdir {PTN}{i}/')
 for d, r, dirs in TREE:
     b = bin(d)[2:].zfill(4)
     s = r.lower()
@@ -45,10 +48,20 @@ for i in 'lwv':
     ops.append(f'mkdir -p {PTN}{i}')
 for i in ['1', 'l/bak', 'w/main', 'w/esp', 'v/main', 'v/esp']:
     ops.append(f'mkdir -p {PTN}{i}')
+    rops.append(f'rmdir {PTN}{i}')
+for i in 'lwv':
+    rops.append(f'rmdir {PTN}{i}')
 
 script = r'''# shellcheck shell=sh
 
-rm -rf /ptn/*
+#rm -rf /ptn/* ## not safe if mounted
+
+# Removing tree
+'''
+script+= '\n'.join(rops)
+script+= '''
+
+# Creating dir/link tree
 '''
 script+= '\n'.join(ops)
 
