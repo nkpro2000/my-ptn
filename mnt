@@ -43,7 +43,7 @@ do_mount () {
                 sudo mount /ptn/s/lbuvm /ptn/l/bak/
                 mount | grep -F -e /ptn/l/bak
                 ;;
-            1011|11|LinEx|linex)
+            LinEx|linex)
                 sudo mount /ptn/s/linex /mnt/LinEx/
                 mount | grep -F -e /mnt/LinEx
                 ;;
@@ -86,7 +86,7 @@ do_umount () {
             1001|9|LBuVM|lbuvm)
                 sudo umount /ptn/l/bak/
                 ;;
-            1011|11|LinEx|linex)
+            LinEx|linex)
                 sudo umount /mnt/LinEx/
                 ;;
             *)
