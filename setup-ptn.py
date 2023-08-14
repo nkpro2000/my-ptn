@@ -71,4 +71,8 @@ print('I> To run bash Script to create the dir/link tree')
 print('$> sh> sudo bash '+ PTN_GIT+'ops-todo.sh # Ctrl+D to skip')
 os.system('sudo bash '+ PTN_GIT+'ops-todo.sh')
 os.system('rm '+ PTN_GIT+'ops-todo.sh')
+
+os.system('sudo cp '+ PTN_GIT+'mnt ' +PTN)
+os.system('sudo chmod +x '+ PTN+'mnt')
+
 os.system('sudo -K')

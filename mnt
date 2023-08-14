@@ -1,0 +1,119 @@
+#!/bin/bash
+
+do_mount () {
+    while test "$1"; do
+        case "$1" in
+            0001|1|LiveO|liveo)
+                sudo mount /ptn/s/liveo /ptn/1/
+                sudo mount /ptn/s/liveo /ptn/v/main/
+                mount | grep -F -e /ptn/v/main -e /ptn/1
+                ;;
+            0010|2|VTESP|vtesp)
+                sudo mount /ptn/s/vtesp /ptn/v/esp/
+                mount | grep -F -e /ptn/v/esp
+                ;;
+            0011|3|EFISP|efisp)
+                sudo mount /ptn/s/efisp /efi/
+                mount | grep -F -e /efi
+                ;;
+            0100|4|WinOS|winos)
+                sudo mount /ptn/s/winos /ptn/w/main/
+                mount | grep -F -e /ptn/w/main
+                ;;
+            0101|5|WinRP|winrp)
+                mkdir -p /tmp/ptn/mnt/winrp/
+                sudo mount /ptn/s/winrp /tmp/ptn/mnt/winrp/
+                mount | grep -F -e /tmp/ptn/mnt/winrp
+                ;;
+            0110|6|WinSP|winsp)
+                sudo mount /ptn/s/winsp /ptn/w/esp/
+                mount | grep -F -e /ptn/w/esp
+                ;;
+            0111|7|MSwRP|mswrp)
+                mkdir -p /tmp/ptn/mnt/mswrp/
+                sudo mount /ptn/s/mswrp /tmp/ptn/mnt/mswrp/
+                mount | grep -F -e /tmp/ptn/mnt/mswrp
+                ;;
+            1000|8|Linux|linux)
+                mkdir -p /tmp/ptn/mnt/linux/
+                sudo mount /ptn/s/linux /tmp/ptn/mnt/linux/
+                mount | grep -F -e /tmp/ptn/mnt/linux
+                ;;
+            1001|9|LBuVM|lbuvm)
+                sudo mount /ptn/s/lbuvm /ptn/l/bak/
+                mount | grep -F -e /ptn/l/bak
+                ;;
+            1011|11|LinEx|linex)
+                sudo mount /ptn/s/linex /mnt/LinEx/
+                mount | grep -F -e /mnt/LinEx
+                ;;
+            *)
+                echo '?> given ptn id not recognized'
+                ;;
+        esac
+        shift
+    done
+}
+
+do_umount () {
+    while test "$1"; do
+        case "$1" in
+            0001|1|LiveO|liveo)
+                sudo umount /ptn/1/
+                sudo umount /ptn/v/main/
+                ;;
+            0010|2|VTESP|vtesp)
+                sudo umount /ptn/v/esp/
+                ;;
+            0011|3|EFISP|efisp)
+                sudo umount /efi/
+                ;;
+            0100|4|WinOS|winos)
+                sudo umount /ptn/w/main/
+                ;;
+            0101|5|WinRP|winrp)
+                sudo umount /tmp/ptn/mnt/winrp/
+                ;;
+            0110|6|WinSP|winsp)
+                sudo umount /ptn/w/esp/
+                ;;
+            0111|7|MSwRP|mswrp)
+                sudo umount /tmp/ptn/mnt/mswrp/
+                ;;
+            1000|8|Linux|linux)
+                sudo umount /tmp/ptn/mnt/linux/
+                ;;
+            1001|9|LBuVM|lbuvm)
+                sudo umount /ptn/l/bak/
+                ;;
+            1011|11|LinEx|linex)
+                sudo umount /mnt/LinEx/
+                ;;
+            *)
+                echo '?> given ptn id not recognized'
+                ;;
+        esac
+        shift
+    done
+}
+
+
+if test "$1" = 'u' -o "$1" = '-u'; then
+    shift
+    if test -n "$*"; then
+        do_umount "$@"
+    else
+        echo '!> no ptn id mentioned. try un mounting all ptn ids...'
+        do_umount \
+            liveo vtesp efisp \
+            winos winrp winsp mswrp \
+            linux lbuvm  linex
+    fi
+else
+    if test -n "$*"; then
+        do_mount "$@"
+    else
+        echo '?> no ptn id mentioned'
+    fi
+fi
+sudo -K
