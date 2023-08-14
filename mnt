@@ -8,42 +8,42 @@ do_mount () {
                 sudo mount /ptn/s/liveo /ptn/v/main/
                 mount | grep -F -e /ptn/v/main -e /ptn/1
                 ;;
-            0010|2|VTESP|vtesp)
+            0010|2|VTESP|vtesp|vt)
                 sudo mount /ptn/s/vtesp /ptn/v/esp/
                 mount | grep -F -e /ptn/v/esp
                 ;;
-            0011|3|EFISP|efisp)
+            0011|3|EFISP|efisp|efi)
                 sudo mount /ptn/s/efisp /efi/
                 mount | grep -F -e /efi
                 ;;
-            0100|4|WinOS|winos)
+            0100|4|WinOS|winos|w)
                 sudo mount /ptn/s/winos /ptn/w/main/
                 mount | grep -F -e /ptn/w/main
                 ;;
-            0101|5|WinRP|winrp)
+            0101|5|WinRP|winrp|wr)
                 mkdir -p /tmp/ptn/mnt/winrp/
                 sudo mount /ptn/s/winrp /tmp/ptn/mnt/winrp/
                 mount | grep -F -e /tmp/ptn/mnt/winrp
                 ;;
-            0110|6|WinSP|winsp)
+            0110|6|WinSP|winsp|ws)
                 sudo mount /ptn/s/winsp /ptn/w/esp/
                 mount | grep -F -e /ptn/w/esp
                 ;;
-            0111|7|MSwRP|mswrp)
+            0111|7|MSwRP|mswrp|mr)
                 mkdir -p /tmp/ptn/mnt/mswrp/
                 sudo mount /ptn/s/mswrp /tmp/ptn/mnt/mswrp/
                 mount | grep -F -e /tmp/ptn/mnt/mswrp
                 ;;
-            1000|8|Linux|linux)
+            1000|8|Linux|linux|l|/)
                 mkdir -p /tmp/ptn/mnt/linux/
                 sudo mount /ptn/s/linux /tmp/ptn/mnt/linux/
                 mount | grep -F -e /tmp/ptn/mnt/linux
                 ;;
-            1001|9|LBuVM|lbuvm)
+            1001|9|LBuVM|lbuvm|bak)
                 sudo mount /ptn/s/lbuvm /ptn/l/bak/
                 mount | grep -F -e /ptn/l/bak
                 ;;
-            LinEx|linex)
+            LinEx|linex|lx)
                 sudo mount /ptn/s/linex /mnt/LinEx/
                 mount | grep -F -e /mnt/LinEx
                 ;;
@@ -62,31 +62,31 @@ do_umount () {
                 sudo umount /ptn/1/
                 sudo umount /ptn/v/main/
                 ;;
-            0010|2|VTESP|vtesp)
+            0010|2|VTESP|vtesp|vt)
                 sudo umount /ptn/v/esp/
                 ;;
-            0011|3|EFISP|efisp)
+            0011|3|EFISP|efisp|efi)
                 sudo umount /efi/
                 ;;
-            0100|4|WinOS|winos)
+            0100|4|WinOS|winos|w)
                 sudo umount /ptn/w/main/
                 ;;
-            0101|5|WinRP|winrp)
+            0101|5|WinRP|winrp|wr)
                 sudo umount /tmp/ptn/mnt/winrp/
                 ;;
-            0110|6|WinSP|winsp)
+            0110|6|WinSP|winsp|ws)
                 sudo umount /ptn/w/esp/
                 ;;
-            0111|7|MSwRP|mswrp)
+            0111|7|MSwRP|mswrp|mr)
                 sudo umount /tmp/ptn/mnt/mswrp/
                 ;;
-            1000|8|Linux|linux)
+            1000|8|Linux|linux|l|/)
                 sudo umount /tmp/ptn/mnt/linux/
                 ;;
-            1001|9|LBuVM|lbuvm)
+            1001|9|LBuVM|lbuvm|bak)
                 sudo umount /ptn/l/bak/
                 ;;
-            LinEx|linex)
+            LinEx|linex|lx)
                 sudo umount /mnt/LinEx/
                 ;;
             *)
