@@ -113,7 +113,14 @@ else
     if test -n "$*"; then
         do_mount "$@"
     else
-        echo '?> no ptn id mentioned'
+        #echo '?> no ptn id mentioned'
+        mount | grep -F \
+            -e ' on /ptn/' -e ' on /tmp/ptn/' \
+            -e ' on /efi' -e ' on /boot/efi' \
+            -e ' on /mnt/LinEx' \
+            | grep -vE '^\S+@' \
+            | bat --paging=never --file-name 'Partitions mounted' \
+                  -l nix #fstab attributes
     fi
 fi
 sudo -K
