@@ -1,0 +1,31 @@
+sh> sudo find /proc /sys /var /etc /tmp /run /mnt /srv /boot \( -type b -or -type c \) -exec file "{}" \;
+/sys/kernel/security/apparmor/.null: character special (1/3)
+/var/lib/docker/volumes/backingFsBlockDev: block special (8/6)
+/run/user/1000/systemd/inaccessible/chr: character special (0/0)
+/run/systemd/inaccessible/blk: block special (0/0)
+/run/systemd/inaccessible/chr: character special (0/0)
+sh> file /dev/null /dev/sda6 && mount | grep /dev/sda6
+/dev/null: character special (1/3)
+/dev/sda6: block special (8/6)
+/dev/sda6 on / type ext4 (rw,noatime)
+sh>
+sh> ls -l /run/{user/1000/,}systemd/inaccessible
+/run/systemd/inaccessible:
+total 0
+b--------- 1 root root 0, 0 Mar 30 12:50 blk
+c--------- 1 root root 0, 0 Mar 30 12:50 chr
+d--------- 2 root root   40 Mar 30 12:50 dir
+p--------- 1 root root    0 Mar 30 12:50 fifo
+---------- 1 root root    0 Mar 30 12:50 reg
+s--------- 1 root root    0 Mar 30 12:50 sock
+
+/run/user/1000/systemd/inaccessible:
+total 0
+c--------- 1 nkpro nkpro 0, 0 Mar 30 12:51 chr
+d--------- 2 nkpro nkpro   40 Mar 30 12:51 dir
+p--------- 1 nkpro nkpro    0 Mar 30 12:51 fifo
+---------- 1 nkpro nkpro    0 Mar 30 12:51 reg
+s--------- 1 nkpro nkpro    0 Mar 30 12:51 sock
+sh>
+sh> sudo find /dev -type p -or -type s
+sh>

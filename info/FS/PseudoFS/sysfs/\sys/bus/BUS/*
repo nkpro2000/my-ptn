@@ -1,0 +1,11 @@
+sh> find /sys/bus -maxdepth 2 -exec sh -c 'if [ -d "{}" ];then echo "{}/";else echo "{}";fi' \; | cut -d/ -f 5- | sort | uniq
+
+devices/
+drivers/
+drivers_autoprobe
+drivers_probe
+rescan
+resource_alignment
+slots/
+uevent
+sh>

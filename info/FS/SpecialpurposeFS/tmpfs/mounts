@@ -1,0 +1,13 @@
+sh> mount | grep tmpfs | column -t
+dev    on  /dev            type  devtmpfs  (rw,nosuid,relatime,size=1922756k,nr_inodes=480689,mode=755,inode64)
+run    on  /run            type  tmpfs     (rw,nosuid,nodev,relatime,mode=755,inode64)
+tmpfs  on  /dev/shm        type  tmpfs     (rw,nosuid,nodev,inode64)
+tmpfs  on  /tmp            type  tmpfs     (rw,nosuid,nodev,size=1930628k,nr_inodes=1048576,inode64)
+tmpfs  on  /run/user/1000  type  tmpfs     (rw,nosuid,nodev,relatime,size=386124k,nr_inodes=96531,mode=700,uid=1000,gid=1000,inode64)
+sh> stat -c "%A %u:%g %N" /dev /dev/shm /tmp /run /run/user/1000 | column -t
+drwxr-xr-x  0:0        '/dev'
+drwxrwxrwt  0:0        '/dev/shm'
+drwxrwxrwt  0:0        '/tmp'
+drwxr-xr-x  0:0        '/run'
+drwx------  1000:1000  '/run/user/1000'
+sh>

@@ -1,0 +1,6 @@
+sh> find /sys/class -not -type l -and -not -type d
+/sys/class/gpio/unexport
+/sys/class/gpio/export
+/sys/class/devcoredump/disabled
+/sys/class/drm/version
+sh>
